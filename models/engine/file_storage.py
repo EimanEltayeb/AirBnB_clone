@@ -3,45 +3,37 @@
 
 
 import json
+import models
 
 
 class FileStorage:
     """ FileStorage class """
 
-    def __init__(self):
-        """ init method"""
-
-        self.__file_path = "file.json" 
-        self.__objects = dict()
-
-    @property
-    def file_path(self):
-        """ file_path getter"""
-
-        return self.__file_path
+    __file_path = "file.json" 
+    __objects = dict()
 
     def all(self):
         """ returns the dictionary"""
 
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """sets obj with key"""
 
-        c = self.__class__.__name__
-        self.__objects[f"{c}.{self.id}"] = obj
+        c = obj.__class__.__name__
+        FileStorage.__objects[f"{c}.{obj.id}"] = obj
 
     def save(self):
         """ serialize objects to json file"""
 
-        with open(self.__file_path, "a") as f:
-            f.write(json.dumps(self.__objects))
+        with open(FileStorage.__file_path, "w") as f:
+            f.write(json.dumps(FileStorage.__objects))
 
     def reload(self):
         """deserializes the JSON file"""
 
         try:
-            with open(self.__file_path, "r") as f:
-                self.__objects = json.load(f.read())
+            with open(FileStorage.__file_path, "r") as f:
+                FileStorage.__objects = json.load(f)
         except FileNotFoundError:
             pass
