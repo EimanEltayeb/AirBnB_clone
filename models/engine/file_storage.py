@@ -33,7 +33,6 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file"""
-        de_clss = {'BaseModel': models.base_model.BaseModel}
         try:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 ob_dic = json.load(f)
