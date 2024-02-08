@@ -10,7 +10,7 @@ class FileStorage:
     """ FileStorage class """
 
     __file_path = "file.json" 
-    __objects = dict()
+    __objects = {}
 
     def all(self):
         """ returns the dictionary"""
@@ -26,8 +26,10 @@ class FileStorage:
     def save(self):
         """ serialize objects to json file"""
 
-        with open(FileStorage.__file_path, "w") as f:
-            f.write(json.dumps(FileStorage.__objects))
+        ob_dict = {key: models.base_model.to_dict(v) for key, v in FileStorage.__objects.items()}
+
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
+            json.dump(ob_dict, f)
 
     def reload(self):
         """deserializes the JSON file"""
