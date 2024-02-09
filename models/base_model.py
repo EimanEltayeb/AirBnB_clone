@@ -11,7 +11,7 @@ import models
 class BaseModel:
     """basemodel class"""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, **kwargs):
         """init method"""
 
         if kwargs:

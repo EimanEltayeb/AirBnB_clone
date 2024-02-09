@@ -9,6 +9,7 @@ class HBNBCommand(cmd.Cmd):
     """cmd class"""
 
     prompt = "(hbnb) "
+    clas_list = ["BaseModel"]
 
     def do_EOF(self, line):
         """Exit the program"""
@@ -21,19 +22,31 @@ class HBNBCommand(cmd.Cmd):
         """empty line"""
         pass
 
+
     def do_create(self, line):
         """creates new instanse"""
-        
+
         if not line:
             print("** class name missing **")
             return
-        if line not in ["BaseModel", "cv"]:
+        if line not in HBNBCommand.clas_list:
             print("** class doesn't exist **")
             return
         if line == "BaseModel":
             x = BaseModel()
+            print(x.id)
             x.save()
-            print(
+
+    def do_show(self, line):
+        """show"""
+
+        if not line:
+            print("** class name missing **")
+            return
+        l = line.split()
+        if l[0] not in HBNBCommand.clas_list:
+            print("** class doesn't exist **")
+            return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
