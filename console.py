@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
             print(x.id)
         elif line == "Review":
             x = Review()
-            print(x.id)       
+            print(x.id)
 
     def do_show(self, line):
         """show"""
@@ -98,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
         if len(ls) < 2:
             print("** instance id missing **")
             return
-        #all_objects = storage.all()
+#       all_objects = storage.all()
         for k, v in storage._FileStorage__objects.items():
             id_part = k.split('.')[1]
             if id_part == ls[1]:
@@ -128,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
                     cls_list.append(str(v))
             print(cls_list)
 
-    #def do_update(self, line):
+#    def do_update(self, line):
 
 
 if __name__ == '__main__':
