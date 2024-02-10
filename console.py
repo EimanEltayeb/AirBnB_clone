@@ -18,7 +18,9 @@ class HBNBCommand(cmd.Cmd):
     """cmd class"""
 
     prompt = "(hbnb) "
-    clas_list = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
+    base = "BaseModel"
+    usr = "User"
+    clas_list = [base, usr, "State", "City", "Amenity", "Place", "Review"]
 
     def do_EOF(self, line):
         """Exit the program"""
@@ -48,21 +50,27 @@ class HBNBCommand(cmd.Cmd):
         elif line == "User":
             x = User()
             print(x.id)
+            x.save()
         elif line == "State":
             x = State()
             print(x.id)
+            x.save()
         elif line == "City":
             x = City()
             print(x.id)
+            x.save()
         elif line == "Amenity":
             x = Amenity()
             print(x.id)
+            x.save()
         elif line == "Place":
             x = Place()
             print(x.id)
+            x.save()
         elif line == "Review":
             x = Review()
             print(x.id)
+            x.save()
 
     def do_show(self, line):
         """show"""
