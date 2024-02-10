@@ -4,6 +4,11 @@
 
 import cmd
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models.base_model import BaseModel
 from models import storage
 from models.engine.file_storage import FileStorage
@@ -13,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
     """cmd class"""
 
     prompt = "(hbnb) "
-    clas_list = ["BaseModel", "User"]
+    clas_list = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
     def do_EOF(self, line):
         """Exit the program"""
@@ -43,6 +48,21 @@ class HBNBCommand(cmd.Cmd):
         elif line == "User":
             x = User()
             print(x.id)
+        elif line == "State":
+            x = State()
+            print(x.id)
+        elif line == "City":
+            x = City()
+            print(x.id)
+        elif line == "Amenity":
+            x = Amenity()
+            print(x.id)
+        elif line == "Place":
+            x = Place()
+            print(x.id)
+        elif line == "Review":
+            x = Review()
+            print(x.id)       
 
     def do_show(self, line):
         """show"""
@@ -78,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
         if len(ls) < 2:
             print("** instance id missing **")
             return
-        all_objects = storage.all()
+        #all_objects = storage.all()
         for k, v in storage._FileStorage__objects.items():
             id_part = k.split('.')[1]
             if id_part == ls[1]:
