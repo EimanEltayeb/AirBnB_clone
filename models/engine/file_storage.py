@@ -3,13 +3,13 @@
 
 
 import json
-from  ..base_model import BaseModel
+from ..base_model import BaseModel
 
 
 class FileStorage:
     """ FileStorage class """
 
-    __file_path = "file.json" 
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -35,7 +35,7 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file"""
-        
+
         try:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 data = json.load(f)

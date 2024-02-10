@@ -17,6 +17,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """Exit the program"""
         return True
+
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
@@ -24,7 +25,6 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """empty line"""
         pass
-
 
     def do_create(self, line):
         """creates new instanse"""
@@ -46,17 +46,17 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
             return
-        l = line.split()
-        if l[0] not in HBNBCommand.clas_list:
+        ls = line.split()
+        if ls[0] not in HBNBCommand.clas_list:
             print("** class doesn't exist **")
             return
-        if len(l) < 2:
+        if len(ls) < 2:
             print("** instance id missing **")
             return
         all_objects = storage.all()
         for k, v in all_objects.items():
             id_part = k.split('.')[1]
-            if id_part == l[1]:
+            if id_part == ls[1]:
                 print(v)
                 return
         print("** no instance found **")
@@ -67,17 +67,17 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
             return
-        l = line.split()
+        ls = line.split()
         if l[0] not in HBNBCommand.clas_list:
             print("** class doesn't exist **")
             return
-        if len(l) < 2:
+        if len(ls) < 2:
             print("** instance id missing **")
             return
         all_objects = storage.all()
         for k, v in storage._FileStorage__objects.items():
             id_part = k.split('.')[1]
-            if id_part == l[1]:
+            if id_part == ls[1]:
                 del storage._FileStorage__objects[k]
                 print("id_part")
                 storage.save()
@@ -87,15 +87,15 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """print all instances"""
 
-        l = line.split()
-        if len(l) = 2 and l[1] not in HBNBCommand.clas_list:
+        ls = line.split()
+        if len(ls) == 2 and ls[1] not in HBNBCommand.clas_list:
             print("** class doesn't exist **")
             return
-        if len(l) = 1:
+        if len(ls) == 1:
             print(f'["{storage.all}"]')
             return
-        if len(l) < 2 and l[1] in HBNBCommand.clas_list:
-            all_objects = storage.all()
+        #if len(ls) < 2 and ls[1] in HBNBCommand.clas_list:
+         #   all_objects = storage.all()
 
 
 if __name__ == '__main__':
