@@ -3,6 +3,7 @@
 
 
 import cmd
+from models.user import User
 from models.base_model import BaseModel
 from models import storage
 from models.engine.file_storage import FileStorage
@@ -12,7 +13,7 @@ class HBNBCommand(cmd.Cmd):
     """cmd class"""
 
     prompt = "(hbnb) "
-    clas_list = ["BaseModel"]
+    clas_list = ["BaseModel", "User"]
 
     def do_EOF(self, line):
         """Exit the program"""
@@ -39,6 +40,9 @@ class HBNBCommand(cmd.Cmd):
             x = BaseModel()
             print(x.id)
             x.save()
+        elif line == "User":
+            x = User()
+            print(x.id)
 
     def do_show(self, line):
         """show"""
@@ -68,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         ls = line.split()
-        if l[0] not in HBNBCommand.clas_list:
+        if ls[0] not in HBNBCommand.clas_list:
             print("** class doesn't exist **")
             return
         if len(ls) < 2:
@@ -79,7 +83,6 @@ class HBNBCommand(cmd.Cmd):
             id_part = k.split('.')[1]
             if id_part == ls[1]:
                 del storage._FileStorage__objects[k]
-                print("id_part")
                 storage.save()
                 return
         print("** no instance found **")
@@ -87,15 +90,25 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """print all instances"""
 
-        ls = line.split()
-        if len(ls) == 2 and ls[1] not in HBNBCommand.clas_list:
+        if not line:
+            all_list = []
+            for k, v in storage._FileStorage__objects.items():
+                all_list.append(str(v))
+            print(all_list)
+            return
+        if line not in HBNBCommand.clas_list:
             print("** class doesn't exist **")
             return
-        if len(ls) == 1:
-            print(f'["{storage.all}"]')
-            return
-        #if len(ls) < 2 and ls[1] in HBNBCommand.clas_list:
-         #   all_objects = storage.all()
+
+        if line in HBNBCommand.clas_list:
+            cls_list = []
+            for k, v in storage._FileStorage__objects.items():
+                class_part = k.split(".")[0]
+                if class_part == line:
+                    cls_list.append(str(v))
+            print(cls_list)
+
+    #def do_update(self, line):
 
 
 if __name__ == '__main__':
