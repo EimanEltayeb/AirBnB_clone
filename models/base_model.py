@@ -38,8 +38,11 @@ class BaseModel:
     def to_dict(self):
         """returns a dictionary"""
 
-        d = self.__dict__
+        d = {}
         d['__class__'] = self.__class__.__name__
-        d['created_at'] =  self.created_at.isoformat()
-        d['updated_at'] =  self.updated_at.isoformat()
+        for k, v in self.__dict__.items():
+            if isinstance(v, datetime):
+                d[k] = v.isoformat()
+            else:
+                d[k] = v
         return d
