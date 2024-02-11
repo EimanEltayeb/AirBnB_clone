@@ -186,7 +186,7 @@ class HBNBCommand(cmd.Cmd):
             ln = f"{cls_[0]} {idd}"
             self.do_destroy(ln)
             return
-        if cls_[1].startswith('update') and not cls_[1].endswith('}'):
+        if cls_[1].startswith('update'): #and not cls_[1].endswith('}'):
             idd = cls_[1].split('"')[1]
             att = cls_[1].split('"')[3]
             val = cls_[1].split('"')[5]
