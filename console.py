@@ -180,7 +180,17 @@ class HBNBCommand(cmd.Cmd):
                 if clas_part == cls_[0]:
                     count += 1
             print(count)
- 
+            return
+        if cls_[1].startswith('destroy'):
+            idd = cls_[1].split('"')[1]
+            ln = f"{cls_[0]} {idd}"
+            self.do_destroy(ln)
+            return
+
+
+
+            
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
