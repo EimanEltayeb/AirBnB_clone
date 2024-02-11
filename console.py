@@ -151,12 +151,20 @@ class HBNBCommand(cmd.Cmd):
             return
         if len(ls) < 3:
             print("** attribute name missing **")
+            return
         if len(ls) < 4:
             print("** value missing **")
+            return
         for k, v in storage._FileStorage__objects.items():
             id_part = k.split('.')[1]
             if id_part == ls[1]:
-                setattr(v, ls[2], ls[3])
+                typ = type(getattr(v, ls[2]))
+                if typ == int:
+                    setattr(v, ls[2], int(ls[3]))
+                elif typ == float:
+                    setattr(v, ls[2], float(ls[3]))
+                elif typ == str:
+                    setattr(v, ls[2], ls[3])
                 return
         print("** no instance found **")
 
