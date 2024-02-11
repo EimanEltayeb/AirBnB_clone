@@ -193,7 +193,7 @@ class HBNBCommand(cmd.Cmd):
             ln = f"{cls_[0]} {idd} {att} \"{val}\""
             self.do_update(ln)
             return
-        if cls_[1] == 'show()':
+        if cls_[1].startswith('show'):
             idd = cls_[1].split('"')[1]
             ln = f"{cls_[0]} {idd}"
             self.do_show(ln)
