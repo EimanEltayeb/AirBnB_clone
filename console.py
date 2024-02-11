@@ -136,7 +136,32 @@ class HBNBCommand(cmd.Cmd):
                     cls_list.append(str(v))
             print(cls_list)
 
-#    def do_update(self, line):
+    def do_update(self, line):
+        """updates the values"""
+
+        if not line:
+            print("** class name missing **")
+            return
+        ls = line.split()
+        if ls[0] not in HBNBCommand.clas_list:
+            print("** class doesn't exist **")
+            return
+        if len(ls) < 2:
+            print("** instance id missing **")
+            return
+        if len(ls) < 3:
+            print("** attribute name missing **")
+        if len(ls) < 4:
+            print("** value missing **")
+        for k, v in storage._FileStorage__objects.items():
+            id_part = k.split('.')[1]
+            if id_part == ls[1]:
+                for key, value in v.items():
+                    if key == ls[2]:
+                        v[key] = ls[3]
+                        return
+        print("** no instance found **")
+
 
 
 if __name__ == '__main__':
