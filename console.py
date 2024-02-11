@@ -198,6 +198,22 @@ class HBNBCommand(cmd.Cmd):
             ln = f"{cls_[0]} {idd}"
             self.do_show(ln)
             return
+        if cls_[1] == 'all()':
+            all_objects = storage.all()
+            out_len = len(all_objects)
+            count = 0
+            print("[", end="")
+            for k, v in all_objects.items():
+                class_part = k.split('.')[0]
+                if class_part == cls_[0]:
+                    if count == 0:
+                        print(v, end="")
+                    else:
+                        print(", ", end="")
+                        print(v, end="")
+                    count += 1
+            print("]")
+            return
 
 
 if __name__ == '__main__':
