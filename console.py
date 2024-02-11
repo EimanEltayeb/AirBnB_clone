@@ -156,12 +156,9 @@ class HBNBCommand(cmd.Cmd):
         for k, v in storage._FileStorage__objects.items():
             id_part = k.split('.')[1]
             if id_part == ls[1]:
-                for key, value in v.items():
-                    if key == ls[2]:
-                        v[key] = ls[3]
-                        return
+                setattr(v, ls[2], ls[3])
+                return
         print("** no instance found **")
-
 
 
 if __name__ == '__main__':
