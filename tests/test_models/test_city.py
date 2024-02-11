@@ -3,7 +3,7 @@
 
 
 import unittest
-import models.state
+import models.city
 
 
 class TestBaseModel(unittest.TestCase):

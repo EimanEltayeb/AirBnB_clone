@@ -7,5 +7,5 @@ import models.base_model
 
 
 class TestBaseModel(unittest.TestCase):
-	"""unittest"""
-
+    """unittest"""
+    pass

@@ -3,7 +3,7 @@
 
 
 import unittest
-import models.state
+import models.user
 
 
 class TestBaseModel(unittest.TestCase):
