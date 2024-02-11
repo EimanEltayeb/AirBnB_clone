@@ -186,7 +186,13 @@ class HBNBCommand(cmd.Cmd):
             ln = f"{cls_[0]} {idd}"
             self.do_destroy(ln)
             return
-
+        if cls_[1].startswith('update'):
+            idd = cls_[1].split('"')[1]
+            att = cls_[1].split('"')[3]
+            val = cls_[1].split('"')[5]
+            ln = f"{cls_[0]} {idd} {att} \"{val}\""
+            self.do_update(ln)
+            return
 
 
             
