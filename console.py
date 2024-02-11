@@ -168,6 +168,19 @@ class HBNBCommand(cmd.Cmd):
                 return
         print("** no instance found **")
 
+    def default(self, line):
+        cls_ = line.split('.')
+        if cls_[0] not in HBNBCommand.clas_list:
+            print("** class doesn't exist **")
+            return
+        if cls_[1] == 'count()':
+            count = 0
+            for k, v in storage._FileStorage__objects.items():
+                clas_part = k.split('.')[0]
+                if clas_part == cls_[0]:
+                    count += 1
+            print(count)
+ 
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
